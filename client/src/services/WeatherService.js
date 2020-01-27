@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const OPEN_WEATHER_BASE_URL = 'http://pro.openweathermap.org/data/2.5';
+const OPEN_WEATHER_BASE_URL = 'https://pro.openweathermap.org/data/2.5';
 const OPEN_WEATHER_API_KEY = '1dda97d1fecf7ab3c289e6a840df6d71'
 // process.env.OPEN_WEATHER_API_KEY;
-const OPEN_WEATHER_IMG_URL = 'http://openweathermap.org/img/w';
+const OPEN_WEATHER_IMG_URL = 'https://openweathermap.org/img/w';
 
 
 const getWeather = (url) => {
