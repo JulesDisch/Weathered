@@ -28,11 +28,13 @@ if(TwentyFourHour < 12) {
 
 
 const HourlyWeatherForecastCard = ({ forecast }) => (
-    <div className="hourly-weather-card">
+    <div style={{ padding: 20 }}  className="hourly-weather-card">
         <small>{getTime(forecast.date)}</small>
-        <img className="icon mx-auto" src={forecast.icon} />
+        <img className="icon mx-auto" src={forecast.icon} alt="weather card" />
         <div className="font-weight-bold">
             {parseInt(forecast.temperature.current)}&deg;
+            <br></br>
+           feels like: {parseInt(forecast.temperature.feel)}&deg;
         </div>
         <div className="text-capitalize">
             <small>{forecast.condition}</small>

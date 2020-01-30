@@ -4,4 +4,9 @@
 
 .hourly-weather-card {
     display: inline-block; 
+    padding: 20px,
+}
+
+#location {
+    font-size: 4rem,
 }

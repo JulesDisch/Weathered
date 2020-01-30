@@ -33,15 +33,19 @@ const getDate = (date) => {
 
 
 const DailyWeatherForecastCard = ({ forecast }) => (
-    <div className="daily-weather-card">
+    <div style={{ padding: 20 }}  className="daily-weather-card">
         <small>{getDate(forecast.date)}</small>
-        <img className="icon mx-auto" src={forecast.icon} />
-        <div className="font-weight-bold">
-            {parseInt(forecast.temperature.maximum)}&deg;
-            &nbsp;<small>{parseInt(forecast.temperature.minimum)}&deg;</small>
-        </div>
+        <img className="icon mx-auto" src={forecast.icon} alt="weather card" />
         <div className="text-capitalize">
             <small>{forecast.condition}</small>
+        <div className="font-weight-bold">
+           {parseInt(forecast.temperature.maximum)}&deg;
+            &nbsp;<small>{parseInt(forecast.temperature.minimum)}&deg;</small>
+            <br></br></div>
+            <div >
+          Will feel like:  {parseInt(forecast.temperature.feel)}&deg;
+        </div>
+       
         </div>
     </div>
 );

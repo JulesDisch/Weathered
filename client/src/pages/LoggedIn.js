@@ -5,6 +5,7 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 
 import { WeatherDashboard } from '../components/Weather/WeatherDashboard';
+import Survey from '../components/Survey'
 
 class LoggedIn extends Component {
   state = {
@@ -12,33 +13,29 @@ class LoggedIn extends Component {
   };
 
   componentDidMount() {
-    API.getUser(this.props.match.params.id)
+    API.getUser(this.props.match.params.id) 
       .then(res => this.setState({ user: res.data }))
       .catch(err => console.log(err));
   }
   render() {
-    console.log(this.props)
     // console.log(this.state)
     return (
-      <Container fluid>
-        <Jumbotron>
-              <h1>You're logged in, {this.state.userData}
-
-              </h1>
-              <h1>
-                <span role="img" aria-label="Face With Rolling Eyes Emoji">
-                  🙄
-              </span>
-              </h1>
-            </Jumbotron>
-        <Row>
-          <Col size="md-12">
-            
+      <div>
+         <Jumbotron>
+          <h1>Welcome, {this.props.userData.username}
+          </h1>
+        </Jumbotron>
+      <Container className="log" >
+       
+       
+         
+{/* <Survey /> */}
             <WeatherDashboard />
-            
-          </Col>
-        </Row>
+
+        
+       
       </Container>
+      </div>
     );
   }
 }

@@ -23,8 +23,8 @@ module.exports = {
   //     );
   // },
   findOne: function (req, res) {
-   
-    console.log ("here we are")
+
+    console.log("here we are")
     db.User
       .findOne({
         where: {
@@ -86,8 +86,10 @@ module.exports = {
     var password = req.body.password;
     db.User.findOne({ where: { username: username } }).then(user => {
       if (!user) {
+        console.log ("incorrect user")
         res.status(401).send({ incorrectUsername: true, inSession: false, msg: "Incorrect Username" })
       } else if (!user.validPassword(password)) {
+        console.log ("incorrect user")
         res.status(401).send({ incorrectPassword: true, inSession: false, msg: "Incorrect Password" })
       } else {
         const token = jwt.sign({
@@ -98,14 +100,14 @@ module.exports = {
           expiresIn: "1h"
         });
         res.status(200).send({
-          inSession: true, msg: "Logged in!", 
+          inSession: true, msg: "Logged in!",
           username: user.username,
           email: user.email,
           token: token,
           id: user.id,
-         
+
         })
-       
+
       }
     })
   },

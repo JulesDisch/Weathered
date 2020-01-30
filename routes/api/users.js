@@ -22,8 +22,8 @@ router.route("/validate").post((req, res) => {
           .status(401)
           .json({ success: false, message: "Expired Token" });
       } else {
-        const { username, email } = decoded;
-        return res.status(200).json({ success: true, username, email });
+        const { username, email, id } = decoded;
+        return res.status(200).json({ success: true, username, email, id });
       }
     });
   }

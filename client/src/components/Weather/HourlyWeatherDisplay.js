@@ -13,8 +13,8 @@ import { HourlyWeatherForecastCard } from './HourlyWeatherForecastCard';
 class HourlyWeatherDisplay extends Component {
     render(){
         return (
-            <div className="hourly-weather-display">
-                <div className="text-center h5 pt-2">Hourly</div>
+            <div style={{ padding: 20 }} className="hourly-weather-display">
+                <div className="text-center h3 pt-2">Hourly</div>
                 <div className="carousel">
                   
                         {

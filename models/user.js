@@ -40,6 +40,11 @@ module.exports = (sequelize, DataTypes) => {
 
 
   User.associate = function (models) {
+    // User.hasOne(models.Preference)
+      // ,
+      //  {
+    //   onDelete: "cascade"
+    // })
     // associations can be defined here
   };
   return User;

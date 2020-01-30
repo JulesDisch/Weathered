@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
 export default {
   // Gets all books
   getBooks: function () {
@@ -40,6 +39,26 @@ export default {
   
   logIn: function (userData) {
     return axios.post('/api/users/signin', userData)
-  }
+  },
+  savePreference: function (preferenceData) {
+    return axios.post("/api/preferences", preferenceData);
+  },
 
+  getPreferences: function () {
+    return axios.get("/api/preferences");
+  },
+  // Gets the book with the given id
+  getPreference: function (id) {
+    return axios.get("/api/preferences" + id);
+  },
+  // Deletes the book with the given id
+  deletePreferences: function (id) {
+    return axios.delete("/api/preferences" + id);
+  },
+  // Saves a book to the database
+  
 };
+
+
+
+
