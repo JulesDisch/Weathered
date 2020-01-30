@@ -29,7 +29,7 @@ app.use(session({
 // app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static('./weather-wear-040888'));
 }
 
 models.sequelize.sync().then(function () {
