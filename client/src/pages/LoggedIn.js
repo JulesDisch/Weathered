@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
+// import { Link } from "react-router-dom";
+import { Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 
 import { WeatherDashboard } from '../components/Weather/WeatherDashboard';
-import Survey from '../components/Survey'
+// import Survey from '../components/Survey'
 
 class LoggedIn extends Component {
   state = {

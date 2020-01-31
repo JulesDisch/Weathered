@@ -11,20 +11,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  // initial: function (req, res) {
-  //   db.User
-  //     .findOne({
-  //       where: {
-  //         username: req.body.username
-  //       }
-  //     })
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(425).json(err)
-  //     );
-  // },
   findOne: function (req, res) {
-
-    console.log("here we are")
     db.User
       .findOne({
         where: {
@@ -105,9 +92,7 @@ module.exports = {
           email: user.email,
           token: token,
           id: user.id,
-
         })
-
       }
     })
   },

@@ -2,7 +2,7 @@ import React from "react";
 import Modal from 'react-modal';
 import API from "../../utils/API";
 import "./style.css";
-import cookie from 'react-cookies'
+import cookie from 'react-cookies';
 
 const customStyles = {
   content: {
@@ -44,7 +44,6 @@ export default class RegisterModal extends React.Component {
       searchResults: [],
       allRegEmails: [],
       allRegUsernames: [],
-      regSuccess: false
     };
 
     this.openModal = this.openModal.bind(this);
@@ -57,7 +56,7 @@ export default class RegisterModal extends React.Component {
     this.sendSignupFormData = this.sendSignupFormData.bind(this)
   }
 
-openModal() {
+  openModal() {
     this.setState({ modalIsOpen: true });
   }
 
@@ -72,14 +71,6 @@ openModal() {
   componentDidMount() {
     this.getAllEmail()
   }
-
-  deleteAlert = () => {
-    var alertModal = document.getElementById("alert");
-    var span = document.getElementsByClassName("close")[0];
-    span.onclick = function () {
-      alertModal.style.display = "none";
-  }
-  };
 
   getAllEmail = () => {
     API.getUsers().then((res) => {
@@ -141,13 +132,13 @@ openModal() {
   handleUserNameChange = (event) => {
     event.target.value ? this.setState({ usernameBlank: false, usernameInvalid: false }) : this.setState({ usernameBlank: true, usernameInvalid: true })
     this.setState({ username: event.target.value })
-    this.checkUsernameTaken(event.target.value) 
+    this.checkUsernameTaken(event.target.value)
   }
 
   handleEmailChange = (event) => {
     event.target.value ? this.setState({ emailBlank: false, emailInvalid: false }) : this.setState({ emailBlank: true, emailInvalid: true })
     this.setState({ email: event.target.value })
-    this.checkEmailTaken(event.target.value) 
+    this.checkEmailTaken(event.target.value)
   }
 
   handlePassChange = (event) => {
@@ -179,13 +170,12 @@ openModal() {
       if (data.success) {
         this.setState({ userLoggedIn: data.inSession, loggedUserName: data.loggedUserName, isLoggedin: true })
         this.handleFormSubmit();
-        
       }
     })
       .catch(err => console.log(err))
   }
 
-handleFormSubmit = event => {
+  handleFormSubmit = event => {
     const userData = {
       username: this.state.username,
       password: this.state.password
@@ -221,45 +211,30 @@ handleFormSubmit = event => {
 
                 {this.state.passwordsDontMatch &&
                   <div className='alert alert-danger alert-dismissible' role="alert">
-                    {/* <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span >&times;</span></button> */}
+                    <button type="button" className="close" data-dismiss="alert" aria-label="Close" ><span >&times;</span></button>
                     <p> <i className='fa fa-exclamation-triangle'> </i> Passwords Don't Match! </p>
                   </div>
                 }
 
-                {this.state.userNameTaken &&
-                  <div className='alert alert-danger alert-dismissible' role="alert">
-                    {/* <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span >&times;</span></button> */}
-                    <p> <i className='fa fa-exclamation-triangle'> </i> Username <strong> {this.state.takenUsernameVal} </strong> is already taken</p>
-                  </div>
-                }
-
-                {this.state.emailTaken &&
-                  <div className='alert alert-danger alert-dismissible' role="alert">
-                    {/* <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> */}
-                    <p> <i className='fa fa-exclamation-triangle'> </i> Email <strong> {this.state.takenEmailVal} </strong> already has an account</p>
-                  </div>
-                }
-
                 <div className="form-group">
-                 
                   <input type='text' placeholder='Username' name='username' className={'form-control'} onChange={this.handleUserNameChange} id='usernameInput' />
-                  {this.state.usernameInvalid && <p className='input-err'> ** UserName Required</p>}
+                  {this.state.usernameInvalid && <p className='input-err'> ** UserName Required</p>}  {this.state.userNameTaken && <p className='input-err'><strong> {this.state.takenUsernameVal} </strong> is already taken</p>}
                 </div>
 
                 <div className="form-group">
-                 
+
                   <input type='text' placeholder='Email' name='email' className={'form-control'} onChange={this.handleEmailChange} id='emailInput' />
-                  {this.state.emailInvalid && <p className='input-err'> ** Email Required</p>}
+                  {this.state.emailInvalid && <p className='input-err'> ** Email Required</p>} {this.state.emailTaken && <p className='input-err'><strong> {this.state.takenEmailVal} </strong> already has an account</p>}
                 </div>
 
                 <div className="form-group">
-                 
+
                   <input type='password' placeholder='Password' name='password' className={'form-control'} onChange={this.handlePassChange} id='passwordInput' />
                   {this.state.passwordInValid && <p className='input-err'> ** Password Required</p>}
                 </div>
 
                 <div className="form-group">
-                 
+
                   <input type='password' placeholder='Confirm your password' name='passwordConf' className={'form-control'} onChange={this.handlePassConfChange} id='passwordConfInput' />
                   {this.state.passwordConfInValid && <p className='input-err'> ** Password Confirmation Required</p>}
                 </div>
@@ -267,11 +242,9 @@ handleFormSubmit = event => {
                 <div className="form-group">
                   <button type='submit' onClick={this.sendSignupFormData} id='createUserBtn'>
                     Sign Up </button>
-                
                 </div>
               </form>
             </div>
-
           </div>
         </Modal>
       </div >

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from 'axios';
-import Books from "./pages/Books";
-
+import Home from "./pages/Home";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import LoggedIn from "./pages/LoggedIn";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-
 import cookie from 'react-cookies';
 import './App.css';
 
@@ -82,7 +81,7 @@ class App extends Component {
         <div>
           <Nav isLoggedIn={this.state.isLoggedIn} loggedUserName={this.state.loggedUserName} />
           <Switch>
-            <Route exact path="/" component={Books} />
+            <Route exact path="/" component={Home} />
             {this.state.isLoggedIn &&  <Route exact path="/dashboard" render={(props) => <LoggedIn {...props} userData={this.state.userData} />} />}
             <Route component={NoMatch} />
           </Switch>

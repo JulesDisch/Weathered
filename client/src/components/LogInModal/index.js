@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Modal from 'react-modal';
 import API from "../../utils/API";
 import "../RegisterModal/style.css"
-import cookie from 'react-cookies'
+import cookie from 'react-cookies';
 
 const customStyles = {
   content: {
@@ -43,22 +43,17 @@ export default class LogInModal extends React.Component {
     this.sendLoginFormData = this.sendLoginFormData.bind(this);
   }
 
-
-
   openModal() {
     this.setState({ modalIsOpen: true });
   }
 
   afterOpenModal() {
-    // references are now sync'd and can be accessed.
     this.subtitle.style.color = '#f00';
   }
 
   closeModal() {
     this.setState({ modalIsOpen: false });
   }
-
-
 
   handleUserNameChange = (event) => {
     event.target.value ? this.setState({ usernameBlank: false, usernameInvalid: false }) : this.setState({ usernameBlank: true, usernameInvalid: true })
@@ -69,8 +64,6 @@ export default class LogInModal extends React.Component {
     event.target.value ? this.setState({ passwordBlank: false, passwordInValid: false }) : this.setState({ passwordBlank: true, passwordInValid: true })
     this.setState({ password: event.target.value })
   }
-
-
 
   sendLoginFormData = (event) => {
     event.preventDefault()
@@ -98,14 +91,12 @@ export default class LogInModal extends React.Component {
 
 
   handleInputChange = event => {
-    // Getting the value and name of the input which triggered the change
     let value = event.target.value;
     const name = event.target.name;
 
     if (name === "password") {
       value = value.substring(0, 15);
     }
-    // Updating the input's state
     this.setState({
       [name]: value
     });
@@ -113,14 +104,12 @@ export default class LogInModal extends React.Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log("here")
     const userData = {
       username: this.state.username,
       password: this.state.password
     }
     API.logIn(userData).then(res => {
       console.log(res)
-      console.log(`Hello ${this.state.username} `)
       if (res.data.token) {
         cookie.save("jwt_token", res.data.token)
         window.location.href = "/dashboard"
@@ -150,7 +139,7 @@ export default class LogInModal extends React.Component {
           <br></br>
           <div>
             {this.state.usernameInvalid && <div className='alert alert-warning' role="alert">
-              <p> <i className='fa fa-exclamation-triangle'> </i> <strong> {this.state.usernameInvalid} problem</strong> </p>
+              <p> <i className='fa fa-exclamation-triangle'> </i> <strong> {this.state.usernameInvalid} Incorrect Username</strong> </p>
             </div>
             }
             {!this.state.userLoggedIn && (
@@ -162,11 +151,9 @@ export default class LogInModal extends React.Component {
                   </div>
 
                   <div className="form-group">
-
                     <input type='password' placeholder='Password' name='password' className={'form-control'} onChange={this.handlePassChange} id='passwordInput' />
                     {this.state.passwordBlank && <p className='input-err'> ** Password Required</p>}
                   </div>
-
                   <div className="form-group">
                     <button type='submit' onClick={this.handleFormSubmit} id='loginBtn'> Login </button>
                   </div>
@@ -178,5 +165,4 @@ export default class LogInModal extends React.Component {
       </div>
     );
   }
-
 }

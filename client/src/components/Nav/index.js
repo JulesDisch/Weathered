@@ -5,9 +5,7 @@ import LogOutBtn from "../LogOutBtn";
 import "../Nav/style.css"
 
 export default class Nav extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
 
   render() {
     const isLoggedIn = this.props.isLoggedIn;

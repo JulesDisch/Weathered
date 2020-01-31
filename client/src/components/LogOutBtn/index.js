@@ -1,8 +1,6 @@
 import React from "react"
-
 import cookie from 'react-cookies'
 
-  
 const LogOutBtn = () => {
   const handleClick = () => {
     cookie.remove("jwt_token")
@@ -15,5 +13,4 @@ const LogOutBtn = () => {
     </div>
   )
 }
-
 export default LogOutBtn;
